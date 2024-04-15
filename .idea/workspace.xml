@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e7506ca-3540-4e67-93b8-cc97ceb7df57" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/dto/ProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/services/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +41,11 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Micro/eclipse-workspace/dscatalog/backend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Micro/eclipse-workspace/dscatalog&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -73,6 +78,9 @@
       <workItem from="1710154023124" duration="39000" />
       <workItem from="1710154073417" duration="44000" />
       <workItem from="1710238821703" duration="11000" />
+      <workItem from="1711315232170" duration="18000" />
+      <workItem from="1712844871003" duration="599000" />
+      <workItem from="1712874998141" duration="1130000" />
     </task>
     <servers />
   </component>
