@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e7506ca-3540-4e67-93b8-cc97ceb7df57" name="Changes" comment="" />
+    <list default="true" id="7e7506ca-3540-4e67-93b8-cc97ceb7df57" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/dto/RoleDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/dto/UserInsertDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/repositories/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/repositories/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/andradscorporation/dscatalog/services/ProductService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,10 +48,11 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.DscatalogApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Micro/eclipse-workspace/dscatalog/backend",
+    "last_opened_file_path": "C:/Users/Micro/cursos/Bootcamp.Spring.boot.3.0/Atividades e projetos/clienthub/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -79,6 +93,8 @@
       <workItem from="1712844871003" duration="599000" />
       <workItem from="1712874998141" duration="1130000" />
       <workItem from="1713288801721" duration="12000" />
+      <workItem from="1714693879048" duration="530000" />
+      <workItem from="1714694443489" duration="39000" />
     </task>
     <servers />
   </component>

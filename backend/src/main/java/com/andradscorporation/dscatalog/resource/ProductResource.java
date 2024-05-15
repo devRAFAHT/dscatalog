@@ -26,21 +26,21 @@ public class ProductResource {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<ProductDTO> findById(@PathVariable Long id){
-        ProductDTO categoryDTO = service.findById(id);
-        return ResponseEntity.ok().body(categoryDTO);
+        ProductDTO productDTO = service.findById(id);
+        return ResponseEntity.ok().body(productDTO);
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO categoryDTO){
-        categoryDTO = service.insert(categoryDTO);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoryDTO.getId()).toUri();
-        return ResponseEntity.created(uri).body(categoryDTO);
+    public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO productDTO){
+        productDTO = service.insert(productDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(productDTO.getId()).toUri();
+        return ResponseEntity.created(uri).body(productDTO);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO categoryDTO){
-        categoryDTO = service.update(id, categoryDTO);
-        return ResponseEntity.ok().body(categoryDTO);
+    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO productDTO){
+        productDTO = service.update(id, productDTO);
+        return ResponseEntity.ok().body(productDTO);
     }
 
     @DeleteMapping(value = "/{id}")
