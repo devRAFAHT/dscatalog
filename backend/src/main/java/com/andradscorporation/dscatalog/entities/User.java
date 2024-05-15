@@ -1,6 +1,7 @@
 package com.andradscorporation.dscatalog.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.io.Serial;
 import java.io.Serializable;
