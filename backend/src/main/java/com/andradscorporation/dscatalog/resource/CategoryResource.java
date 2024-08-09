@@ -2,6 +2,7 @@ package com.andradscorporation.dscatalog.resource;
 
 import com.andradscorporation.dscatalog.dto.CategoryDTO;
 import com.andradscorporation.dscatalog.services.CategoryService;
+import com.andradscorporation.dscatalog.util.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +19,7 @@ public class CategoryResource {
     @Autowired
     private CategoryService service;
 
-    @GetMapping
+    @GetMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     public ResponseEntity<Page<CategoryDTO>> findAll(Pageable pageable){
         Page<CategoryDTO> list = service.findAllPaged(pageable);
         return ResponseEntity.ok().body(list);

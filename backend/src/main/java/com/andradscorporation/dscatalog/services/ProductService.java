@@ -46,7 +46,7 @@ public class ProductService {
         Product ProductEntity = new Product();
         copyDtoToEntity(ProductDTO, ProductEntity);
         ProductEntity = repository.save(ProductEntity);
-        return new ProductDTO();
+        return new ProductDTO(ProductEntity);
     }
 
     @Transactional

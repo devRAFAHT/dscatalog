@@ -2,6 +2,8 @@ package com.andradscorporation.dscatalog.dto;
 
 import com.andradscorporation.dscatalog.entities.Category;
 import com.andradscorporation.dscatalog.entities.Product;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+//@JsonPropertyOrder
 public class ProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -25,6 +28,7 @@ public class ProductDTO implements Serializable {
     private String description;
     @Positive(message = "O preço deve ser positivo")
     private Double price;
+    @JsonProperty("img_url")
     private String imgUrl;
     @PastOrPresent(message = "A data do produto não pode ser futura")
     private Instant date;
