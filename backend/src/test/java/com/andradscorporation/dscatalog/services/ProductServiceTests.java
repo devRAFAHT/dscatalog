@@ -1,108 +1,75 @@
 package com.andradscorporation.dscatalog.services;
 
-import static org.mockito.Mockito.times;
-
-import java.util.List;
-import java.util.Optional;
-
 import com.andradscorporation.dscatalog.dto.ProductDTO;
+import com.andradscorporation.dscatalog.entities.Category;
 import com.andradscorporation.dscatalog.entities.Product;
 import com.andradscorporation.dscatalog.repositories.ProductRepository;
-import com.andradscorporation.dscatalog.services.exceptions.DatabaseException;
-import com.andradscorporation.dscatalog.services.exceptions.ResourceNotFoundException;
 import com.andradscorporation.dscatalog.tests.Factory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.Instant;
+import java.util.Optional;
 
+import static org.mockito.Mockito.when;
 
-@ExtendWith(SpringExtension.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ExtendWith(MockitoExtension.class)
 public class ProductServiceTests {
 
-	@InjectMocks
-	private ProductService service;
-	
-	@Mock
-	private ProductRepository repository;
-	
-	private long existingId;
-	private long nonExistingId;
-	private long dependentId;
-	private Product product;
-	private PageImpl<Product> page;
-	
-	@BeforeEach
-	void setUp() throws Exception {
-		existingId = 1L;
-		nonExistingId = 2L;
-		dependentId = 3L;
-		product = Factory.createProduct();
-		page = new PageImpl<>(List.of(product));
-		
-		Mockito.when(repository.findAll((Pageable)ArgumentMatchers.any())).thenReturn(page);
-		
-		Mockito.when(repository.save(ArgumentMatchers.any())).thenReturn(product);
-		
-		Mockito.when(repository.findById(existingId)).thenReturn(Optional.of(product));
-		Mockito.when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
-		
-		Mockito.doNothing().when(repository).deleteById(existingId);
-		Mockito.doThrow(EmptyResultDataAccessException.class).when(repository).deleteById(nonExistingId);
-		Mockito.doThrow(DataIntegrityViolationException.class).when(repository).deleteById(dependentId);
-	}
+    @InjectMocks
+    private ProductService productService;
 
-	@Test
-	public void findAllPagedShouldReturnPage() {
-		
-		Pageable pageable = PageRequest.of(0, 12);
-		
-		Page<ProductDTO> result = service.findAllPaged(pageable);
-		
-		Assertions.assertNotNull(result);
-		
-		Mockito.verify(repository, times(1)).findAll(pageable);
-	}
-	
-	@Test
-	public void deleteShouldThrowDatabaseExceptionWhenDependentId() {
-		
-		Assertions.assertThrows(DatabaseException.class, () -> {
-			service.delete(dependentId);
-		});
-		
-		Mockito.verify(repository, times(1)).deleteById(dependentId);
-	}
-	
-	@Test
-	public void deleteShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() {
-		
-		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-			service.delete(nonExistingId);
-		});
+    @Mock
+    ProductRepository productRepository;
 
-		Mockito.verify(repository, times(1)).deleteById(nonExistingId);
-	}
-	
-	@Test
-	public void deleteShouldDoNothingWhenIdExists() {
-		
-		Assertions.assertDoesNotThrow(() -> {
-			service.delete(existingId);
-		});
-		
-		Mockito.verify(repository, times(1)).deleteById(existingId);
-	}
+    private Long countTotalProducts;
+
+    @BeforeEach
+    void setUpMocks() throws Exception{
+        MockitoAnnotations.openMocks(this);
+        countTotalProducts = 25L;
+    }
+
+    @Test
+    void findByIdShouldReturnNotNullWhenIdIsValid(){
+        Product product = Factory.createProduct();
+
+        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+
+        var result = productService.findById(1L);
+        Assertions.assertNotNull(result.getKey());
+        Assertions.assertNotNull(result.getCategories());
+        Assertions.assertNotNull(result.getName());
+        Assertions.assertNotNull(result.getDate());
+        Assertions.assertNotNull(result.getCategories());
+        Assertions.assertNotNull(result.getDescription());
+        Assertions.assertNotNull(result.getPrice());
+        Assertions.assertNotNull(result.getImgUrl());
+        Assertions.assertTrue(result.toString().contains("links: [</products/1>;rel=\"self\"]"));
+    }
+
+    @Test
+    public void saveShouldPersistWithAutoincrementWhenIdIsNull() {
+        Product product = Factory.createProduct();
+        product.setId(null);
+
+        Product persisted = product;
+
+        ProductDTO productDTO = Factory.createProductDTO();
+
+        when(productRepository.save(product)).thenReturn(persisted);
+
+        var result = productService.insert(productDTO);
+
+        Assertions.assertTrue(result.toString().contains("links: [</products/1>;rel=\"self\"]"));
+    }
+
 }

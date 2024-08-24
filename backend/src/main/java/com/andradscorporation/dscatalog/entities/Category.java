@@ -19,9 +19,9 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Column(columnDefinition = "TIMESTAMP")
     private Instant createdAt;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Column(columnDefinition = "TIMESTAMP")
     private Instant updateAt;
 
     @ManyToMany(mappedBy = "categories")

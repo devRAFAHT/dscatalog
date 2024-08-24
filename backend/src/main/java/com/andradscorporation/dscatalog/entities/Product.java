@@ -22,7 +22,7 @@ public class Product implements Serializable {
     private String description;
     private Double price;
     private String imgUrl;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Column(columnDefinition = "TIMESTAMP")
     private Instant date;
 
     @ManyToMany

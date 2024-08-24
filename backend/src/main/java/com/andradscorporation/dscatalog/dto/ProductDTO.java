@@ -4,11 +4,11 @@ import com.andradscorporation.dscatalog.entities.Category;
 import com.andradscorporation.dscatalog.entities.Product;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -16,11 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-//@JsonPropertyOrder
-public class ProductDTO implements Serializable {
+@JsonPropertyOrder({"id", "name", "description", "price", "img_url", "date", "categories"})
+public class ProductDTO extends RepresentationModel<ProductDTO> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    @JsonProperty("id")
+    private Long key;
     @Size(min = 5, max = 60, message = "O nome deve ter entre 5 e 60 caracteres")
     @NotBlank(message = "Campo obrigatório")
     private String name;
@@ -38,8 +39,8 @@ public class ProductDTO implements Serializable {
     public ProductDTO(){
     }
 
-    public ProductDTO(Long id, String name, String description, Double price, String imgUrl, Instant date) {
-        this.id = id;
+    public ProductDTO(Long key, String name, String description, Double price, String imgUrl, Instant date) {
+        this.key = key;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -48,7 +49,7 @@ public class ProductDTO implements Serializable {
     }
 
     public ProductDTO(Product entity) {
-        this.id = entity.getId();
+        this.key = entity.getId();
         this.name = entity.getName();
         this.description = entity.getDescription();
         this.price = entity.getPrice();
@@ -61,12 +62,12 @@ public class ProductDTO implements Serializable {
         categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));
     }
 
-    public Long getId() {
-        return id;
+    public Long getKey() {
+        return key;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setKey(Long key) {
+        this.key = key;
     }
 
     public String getName() {
